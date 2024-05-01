@@ -1,0 +1,15 @@
+[Unit]
+Description=Webhook That updates rubens_blog upon Push by Github
+After=network.target
+
+[Service]
+# root is not optional
+User=root
+WorkingDirectory=/srv/www/rubens_blog
+ExecStart=/usr/bin/webhook -hooks /srv/www/rubens_blog/production/hooks.json -verbose
+ExecReload=/bin/kill -s HUP $MAINPID
+KillMode=mixed
+TimeoutStopSec=5
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,19 @@
+[Unit]
+Description=Gunicorn service that serves rubens_blog
+After=network.target
+
+[Service]
+Environment="ENV_NAME=production"
+# the specific user that the service will run as
+# root is not optional
+User=root
+Group=root
+WorkingDirectory=/srv/www/rubens_blog/rubens_blog
+ExecStart=/srv/www/rubens_blog/venv/bin/gunicorn --workers 1 --bind 127.0.0.1:8000 rubens_blog.wsgi
+ExecReload=/bin/kill -s HUP $MAINPID
+KillMode=mixed
+TimeoutStopSec=5
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

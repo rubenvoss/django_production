@@ -1,0 +1,6 @@
+{
+    "DATABASE": "postgres",
+    "DATABASE_VERSION": "15",
+    "DATABASE_USER": "db_user"
+    
+}

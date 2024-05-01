@@ -1,0 +1,41 @@
+[
+    {
+      "id": "rubens_blog_update",
+      "execute-command": "/srv/www/rubens_blog/production/update.sh",
+      "command-working-directory": "/srv/www/rubens_blog",
+      
+
+      "trigger-rule":
+        {
+          "and":
+          [
+            {
+              "match":
+              {
+                "type": "payload-hmac-sha1",
+                "secret": "------------secret---------",
+                "parameter":
+                {
+                  "source": "header",
+                  "name": "X-Hub-Signature"
+                }
+              }
+            },
+            {
+              "match":
+              {
+                "type": "value",
+                "value": "refs/heads/main",
+                "parameter":
+                {
+                  "source": "payload",
+                  "name": "ref"
+                }
+              }
+            }
+          ]
+        }
+
+
+    }
+  ]
