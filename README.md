@@ -102,7 +102,7 @@ unattended-upgrades --dry-run --debug
 # where are the logs?
 
 # python setup
-apt install git python3.11-venv python3-dev libpq-dev gcc
+apt install git python3.11 python3.11-venv python3-dev libpq-dev gcc
 mkdir -p /srv/www/
 cd /srv/www
 git clone git@github.com:rubenvoss/rubens_blog.git
@@ -214,4 +214,6 @@ sudo ufw allow 'Nginx Full'
 sudo ufw status
 
 sudo certbot --standalone --nginx
+
+# nginx https settings
 ```
